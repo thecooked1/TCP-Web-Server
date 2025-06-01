@@ -7,20 +7,16 @@
       "RelativeMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|solutionrelative:webserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|c:\\users\\ioane\\documents\\vsprojects\\webserver\\webserver\\webroot\\error.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|solutionrelative:webserver\\webroot\\error.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|c:\\users\\ioane\\documents\\vsprojects\\webserver\\webserver\\webroot\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|solutionrelative:webserver\\webroot\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|c:\\users\\ioane\\documents\\vsprojects\\webserver\\webserver\\webroot\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|solutionrelative:webserver\\webroot\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|c:\\users\\ioane\\documents\\vsprojects\\webserver\\webserver\\webroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|solutionrelative:webserver\\webroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|c:\\users\\ioane\\documents\\vsprojects\\webserver\\webserver\\webroot\\error.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|solutionrelative:webserver\\webroot\\error.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|c:\\users\\ioane\\documents\\vsprojects\\webserver\\webserver\\webroot\\about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -29,6 +25,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|c:\\users\\ioane\\documents\\vsprojects\\webserver\\webserver\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|solutionrelative:webserver\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|c:\\users\\ioane\\documents\\vsprojects\\webserver\\webserver\\webroot\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|solutionrelative:webserver\\webroot\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +42,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "error.html",
               "DocumentMoniker": "C:\\Users\\ioane\\Documents\\vsProjects\\webserver\\webserver\\webroot\\error.html",
               "RelativeDocumentMoniker": "webserver\\webroot\\error.html",
@@ -55,7 +55,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "script.js",
               "DocumentMoniker": "C:\\Users\\ioane\\Documents\\vsProjects\\webserver\\webserver\\webroot\\script.js",
               "RelativeDocumentMoniker": "webserver\\webroot\\script.js",
@@ -63,12 +63,11 @@
               "RelativeToolTip": "webserver\\webroot\\script.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-01T12:09:59.812Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T12:09:59.812Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "styles.css",
               "DocumentMoniker": "C:\\Users\\ioane\\Documents\\vsProjects\\webserver\\webserver\\webroot\\styles.css",
               "RelativeDocumentMoniker": "webserver\\webroot\\styles.css",
@@ -81,7 +80,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "about.html",
               "DocumentMoniker": "C:\\Users\\ioane\\Documents\\vsProjects\\webserver\\webserver\\webroot\\about.html",
               "RelativeDocumentMoniker": "webserver\\webroot\\about.html",
@@ -107,13 +106,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Users\\ioane\\Documents\\vsProjects\\webserver\\webserver\\.gitignore",
               "RelativeDocumentMoniker": "webserver\\.gitignore",
               "ToolTip": "C:\\Users\\ioane\\Documents\\vsProjects\\webserver\\webserver\\.gitignore",
               "RelativeToolTip": "webserver\\.gitignore",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-06-01T12:05:01.738Z",
               "EditorCaption": ""
@@ -126,7 +125,7 @@
               "RelativeDocumentMoniker": "webserver\\Program.cs",
               "ToolTip": "C:\\Users\\ioane\\Documents\\vsProjects\\webserver\\webserver\\Program.cs",
               "RelativeToolTip": "webserver\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwCwAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T12:03:53.981Z",
               "EditorCaption": ""
