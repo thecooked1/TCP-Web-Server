@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|solutionrelative:webserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|c:\\users\\ioane\\documents\\vsprojects\\webserver\\webserver\\webroot\\about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|solutionrelative:webserver\\webroot\\about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|c:\\users\\ioane\\documents\\vsprojects\\webserver\\webserver\\webroot\\error.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|solutionrelative:webserver\\webroot\\error.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|c:\\users\\ioane\\documents\\vsprojects\\webserver\\webserver\\webroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|solutionrelative:webserver\\webroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|c:\\users\\ioane\\documents\\vsprojects\\webserver\\webserver\\webroot\\about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|solutionrelative:webserver\\webroot\\about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0BBA0E55-B6DC-4062-88E4-4AEC21498379}|webserver\\webserver.csproj|c:\\users\\ioane\\documents\\vsprojects\\webserver\\webserver\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -42,7 +42,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "error.html",
               "DocumentMoniker": "C:\\Users\\ioane\\Documents\\vsProjects\\webserver\\webserver\\webroot\\error.html",
               "RelativeDocumentMoniker": "webserver\\webroot\\error.html",
@@ -50,8 +50,7 @@
               "RelativeToolTip": "webserver\\webroot\\error.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-06-01T12:10:09.241Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T12:10:09.241Z"
             },
             {
               "$type": "Document",
@@ -67,7 +66,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "styles.css",
               "DocumentMoniker": "C:\\Users\\ioane\\Documents\\vsProjects\\webserver\\webserver\\webroot\\styles.css",
               "RelativeDocumentMoniker": "webserver\\webroot\\styles.css",
@@ -75,12 +74,11 @@
               "RelativeToolTip": "webserver\\webroot\\styles.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-06-01T12:09:50.12Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T12:09:50.12Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "about.html",
               "DocumentMoniker": "C:\\Users\\ioane\\Documents\\vsProjects\\webserver\\webserver\\webroot\\about.html",
               "RelativeDocumentMoniker": "webserver\\webroot\\about.html",
@@ -93,7 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\ioane\\Documents\\vsProjects\\webserver\\webserver\\webroot\\index.html",
               "RelativeDocumentMoniker": "webserver\\webroot\\index.html",
@@ -101,8 +99,7 @@
               "RelativeToolTip": "webserver\\webroot\\index.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-06-01T12:09:15.707Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T12:09:15.707Z"
             },
             {
               "$type": "Document",
@@ -114,8 +111,7 @@
               "RelativeToolTip": "webserver\\.gitignore",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-06-01T12:05:01.738Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T12:05:01.738Z"
             },
             {
               "$type": "Document",
@@ -125,7 +121,7 @@
               "RelativeDocumentMoniker": "webserver\\Program.cs",
               "ToolTip": "C:\\Users\\ioane\\Documents\\vsProjects\\webserver\\webserver\\Program.cs",
               "RelativeToolTip": "webserver\\Program.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAQwCwAAABIAAAAAAAAAA==",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAswEYAAABpAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T12:03:53.981Z",
               "EditorCaption": ""

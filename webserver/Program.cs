@@ -4,20 +4,19 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 public class SimpleWebServer
 {
     private static readonly int Port = 8080; 
-    private static readonly string WebRoot = Path.Combine(AppContext.BaseDirectory, "webroot"); 
+    private static readonly string WebRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "webroot"));
 
     public static void Main(string[] args)
     {
-        Console.WriteLine($"WebRoot Directory: {Path.GetFullPath(WebRoot)}");
+        Console.WriteLine($"WebRoot Directory: {WebRoot}");
         if (!Directory.Exists(WebRoot))
         {
-            Console.WriteLine($"Error: WebRoot directory not found at {Path.GetFullPath(WebRoot)}");
-            Console.WriteLine("Please create it and add some files (e.g., index.html).");
-            Console.WriteLine("Ensure 'Copy to Output Directory' is set for webroot files in your .csproj.");
+            Console.WriteLine($"Error: WebRoot directory not found at {WebRoot}");
             return;
         }
 
@@ -32,11 +31,44 @@ public class SimpleWebServer
             {
                 Console.WriteLine("Waiting for a connection...");
                 TcpClient client = server.AcceptTcpClient();
-                Console.WriteLine("Client connected!");
+                Console.WriteLine($"Client connected from {((IPEndPoint?)client.Client.RemoteEndPoint)?.Address}");
 
-                
-                NetworkStream stream = client.GetStream();
-                string body = "Hello from server!\r\n";
+                Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClient));
+                clientThread.Start(client);
+            }
+        }
+        catch (SocketException e)
+        {
+            Console.WriteLine($"SocketExpection: {e.Message}");
+        }
+
+        catch (Exception e)
+        {
+            Console.WriteLine($"An unexpected error occured: {e.Message}");
+        }
+        finally
+        {
+            server?.Stop();
+            Console.WriteLine("Server stopped");
+        }
+    }
+
+
+        private static void HandleClient (object? clientObj)
+    {
+        if (clientObj is not TcpClient client)
+        {
+            Console.WriteLine("Error: Invalid client object passed to thread.");
+            return;
+        }
+
+        Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Handling client...");
+        try {
+            using (NetworkStream stream = client.GetStream())
+
+            {
+                Thread.Sleep(100);
+                string body = "Hello from Thread"  + " " + $"{Thread.CurrentThread.ManagedThreadId}\r\n";
                 string header = $"HTTP/1.1 200 OK\r\n" +
                                 $"Content-Type: text/plain\r\n" +
                                 $"Content-Length: {Encoding.UTF8.GetByteCount(body)}\r\n" +
@@ -45,23 +77,23 @@ public class SimpleWebServer
                 byte[] response = Encoding.UTF8.GetBytes(header + body);
                 stream.Write(response, 0, response.Length);
                 stream.Flush();
-
-                Console.WriteLine("Sent basic response and closing connection.");
-                client.Close();
             }
+            
+            Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Response sent.");        
         }
-        catch (SocketException e)
+
+        catch (IOException ex)
         {
-            Console.WriteLine($"SocketException: {e.Message}");
+            Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: IOException while handling client: {ex.Message}");
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An unexpected error occurred: {e.Message}");
+            Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Error handling client: {e.Message}");
         }
         finally
         {
-            server?.Stop();
-            Console.WriteLine("Server stopped.");
+            client.Close();
+            Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Client connection closed.");
         }
     }
 }
