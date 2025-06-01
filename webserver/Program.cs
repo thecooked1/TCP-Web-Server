@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Linq;
 
 public class SimpleWebServer
 {
@@ -74,6 +75,8 @@ public class SimpleWebServer
                 {
                     Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: " +
                         $"Empty request line received. Closing connection.");
+                    SendErrorResponse(stream, "400", "Bad Request", "400 Bad Request", 
+                        "The server could not understand the request due to malformed syntax.");
                     return;
                 }
 
@@ -85,8 +88,37 @@ public class SimpleWebServer
                     // Console.WriteLine($"Thread {threadId}: Header: {headerLine}"); // Uncomment to see all headers
                 }
 
+                string[] requestParts = requestLine.Split(' ');
+                if (requestParts.Length < 3) 
+                {
+                    Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Malformed request line: {requestLine}");
+                    SendErrorResponse(stream, "400", "Bad Request", "400 Bad Request", "Malformed request line.");
+                    return;
+                }
+
+                string method = requestParts[0];
+                string url = requestParts[1];
+                //string httpVersion = requestParts[2];
+
+                if (!method.Equals("GET", StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Method not allowed: {method}");
+                    SendErrorResponse(stream, "405", "Method Not Allowed", "405 Method Not Allowed", 
+                        "This server only supports GET requests.");
+                    return;
+                }
+
+                string body = $"Method: {method}\r\nURL: {url}\r\n";
+                string header = $"HTTP/1.1 200 OK\r\n" +
+                                $"Content-Type: text/plain; charset=UTF-8\r\n" +
+                                $"Content-Length: {Encoding.UTF8.GetByteCount(body)}\r\n" +
+                                $"Connection: close\r\n\r\n";
+                byte[] responseBytes = Encoding.UTF8.GetBytes(header + body);
+                stream.Write(responseBytes, 0, responseBytes.Length);
+                stream.Flush();
+
                 //Thread.Sleep(100);
-                string body = "Hello from Thread"  + " " + $"{Thread.CurrentThread.ManagedThreadId}\r\nReceived: {requestLine}\r\n";
+                /*string body = "Hello from Thread"  + " " + $"{Thread.CurrentThread.ManagedThreadId}\r\nReceived: {requestLine}\r\n";
                 string header = $"HTTP/1.1 200 OK\r\n" +
                                 $"Content-Type: text/plain\r\n" +
                                 $"Content-Length: {Encoding.UTF8.GetByteCount(body)}\r\n" +
@@ -94,7 +126,8 @@ public class SimpleWebServer
 
                 byte[] response = Encoding.UTF8.GetBytes(header + body);
                 stream.Write(response, 0, response.Length);
-                stream.Flush();
+                stream.Flush();*/
+
             }
             
             Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Response sent.");        
@@ -115,28 +148,46 @@ public class SimpleWebServer
         }
     }
 
-    private static void SendErrorResponse(NetworkStream stream, string statusCode, string statusMessage, string title, string bodyHtml)
+    private static void SendGenericHttpResponse(NetworkStream stream, string httpStatusCodeAndReason, string contentType, byte[] content)
     {
-        Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Intending to send error: {statusCode} {statusMessage}");
-        string htmlResponse = $"<html><head><title>{title}</title></head><body><h1>{statusMessage}</h1><p>{bodyHtml}</p></body></html>";
-        string headers = $"HTTP/1.1 {statusCode} {statusMessage}\r\n" +
-                         $"Content-Type: text/html; charset=UTF-8\r\n" +
-                         $"Content-Length: {Encoding.UTF8.GetByteCount(htmlResponse)}\r\n" +
-                         $"Connection: close\r\n\r\n";
-        byte[] responseBytes = Encoding.UTF8.GetBytes(headers + htmlResponse);
-
         try
         {
-            if (stream.CanWrite)
+            if (!stream.CanWrite)
             {
-                stream.Write(responseBytes, 0, responseBytes.Length);
-                stream.Flush();
+                Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Cannot write to stream for response {httpStatusCodeAndReason}.");
+                return;
             }
+            string headers = $"HTTP/1.1 {httpStatusCodeAndReason}\r\n" +
+                             $"Content-Type: {contentType}\r\n" +
+                             $"Content-Length: {content.Length}\r\n" +
+                             "Connection: close\r\n\r\n"; 
+
+            byte[] headerBytes = Encoding.UTF8.GetBytes(headers);
+            stream.Write(headerBytes, 0, headerBytes.Length);
+            if (content.Length > 0)
+            {
+                stream.Write(content, 0, content.Length);
+            }
+            stream.Flush();
+            Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Sent response: {httpStatusCodeAndReason}");
         }
         catch (IOException ex)
         {
-            Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: IOException while sending error response: {ex.Message}");
+            Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: IOException during SendGenericHttpResponse for {httpStatusCodeAndReason}: {ex.Message}");
         }
+        catch (ObjectDisposedException ex)
+        {
+            Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: ObjectDisposedException during SendGenericHttpResponse for {httpStatusCodeAndReason}: {ex.Message}");
+        }
+    }
+
+
+    private static void SendErrorResponse(NetworkStream stream, string statusCode, string statusMessage, string title, string bodyContentHtml)
+    {
+        Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Sending error: {statusCode} {statusMessage}");
+        string htmlResponse = $"<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><title>{title}</title></head><body><h1>{statusCode} {statusMessage}</h1><p>{bodyContentHtml}</p></body></html>";
+        byte[] contentBytes = Encoding.UTF8.GetBytes(htmlResponse);
+        SendGenericHttpResponse(stream, $"{statusCode} {statusMessage}", "text/html; charset=UTF-8", contentBytes);
     }
 
 
