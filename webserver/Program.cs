@@ -65,10 +65,28 @@ public class SimpleWebServer
         Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Handling client...");
         try {
             using (NetworkStream stream = client.GetStream())
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8, leaveOpen: true))
 
             {
-                Thread.Sleep(100);
-                string body = "Hello from Thread"  + " " + $"{Thread.CurrentThread.ManagedThreadId}\r\n";
+                string? requestLine = reader.ReadLine();
+
+                if (string.IsNullOrEmpty(requestLine))
+                {
+                    Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: " +
+                        $"Empty request line received. Closing connection.");
+                    return;
+                }
+
+                Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Request Line: {requestLine}");
+
+                string? headerLine;
+                while (!string.IsNullOrEmpty(headerLine = reader.ReadLine()))
+                {
+                    // Console.WriteLine($"Thread {threadId}: Header: {headerLine}"); // Uncomment to see all headers
+                }
+
+                //Thread.Sleep(100);
+                string body = "Hello from Thread"  + " " + $"{Thread.CurrentThread.ManagedThreadId}\r\nReceived: {requestLine}\r\n";
                 string header = $"HTTP/1.1 200 OK\r\n" +
                                 $"Content-Type: text/plain\r\n" +
                                 $"Content-Length: {Encoding.UTF8.GetByteCount(body)}\r\n" +
@@ -96,4 +114,30 @@ public class SimpleWebServer
             Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Client connection closed.");
         }
     }
+
+    private static void SendErrorResponse(NetworkStream stream, string statusCode, string statusMessage, string title, string bodyHtml)
+    {
+        Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: Intending to send error: {statusCode} {statusMessage}");
+        string htmlResponse = $"<html><head><title>{title}</title></head><body><h1>{statusMessage}</h1><p>{bodyHtml}</p></body></html>";
+        string headers = $"HTTP/1.1 {statusCode} {statusMessage}\r\n" +
+                         $"Content-Type: text/html; charset=UTF-8\r\n" +
+                         $"Content-Length: {Encoding.UTF8.GetByteCount(htmlResponse)}\r\n" +
+                         $"Connection: close\r\n\r\n";
+        byte[] responseBytes = Encoding.UTF8.GetBytes(headers + htmlResponse);
+
+        try
+        {
+            if (stream.CanWrite)
+            {
+                stream.Write(responseBytes, 0, responseBytes.Length);
+                stream.Flush();
+            }
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId}: IOException while sending error response: {ex.Message}");
+        }
+    }
+
+
 }

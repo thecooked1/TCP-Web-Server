@@ -86,8 +86,7 @@
               "RelativeToolTip": "webserver\\webroot\\about.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-06-01T12:09:37.214Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T12:09:37.214Z"
             },
             {
               "$type": "Document",
@@ -121,7 +120,7 @@
               "RelativeDocumentMoniker": "webserver\\Program.cs",
               "ToolTip": "C:\\Users\\ioane\\Documents\\vsProjects\\webserver\\webserver\\Program.cs",
               "RelativeToolTip": "webserver\\Program.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAswF0AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAQwFgAAACCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T12:03:53.981Z",
               "EditorCaption": ""
