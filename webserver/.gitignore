@@ -3,7 +3,6 @@
 *.userosscache
 *.sln.docstates
 
-.vs/
 
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -21,6 +20,7 @@ bld/
 [Ll]ogs/
 
 .roslyn/
+.vs/
 
 *.nupkg
 **/[Pp]ackages/*
